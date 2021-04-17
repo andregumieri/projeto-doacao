@@ -13,6 +13,15 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+use App\Http\Controllers\UsersController;
+
+$router->post('/', function () use ($router) {
     return $router->app->version();
+});
+
+
+
+$router->group(['prefix' => 'v1'], function() use ($router) {
+    $router->post('users', 'UsersController@create');
+    $router->get('users/{userId}', 'UsersController@view');
 });

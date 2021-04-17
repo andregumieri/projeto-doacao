@@ -17,7 +17,7 @@ services:
   database:
     image: mariadb:10.5.9
     volumes:
-      - mysql_data_5_6:/var/lib/mysql
+      - doar_mariadb:/var/lib/mysql
     environment:
       - "MYSQL_DATABASE=homestead"
       - "MYSQL_USER=homestead"
@@ -27,4 +27,4 @@ services:
       - "33061:3306"
 
 volumes:
-  mysql_data_5_6:
+  doar_mariadb:
