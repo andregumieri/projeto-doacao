@@ -14,7 +14,8 @@ class UsersControllerTest extends TestCase
             'email' => 'teste@email.com',
             'name' => 'Fulano Teste',
             'password' => '1234',
-            'password_confirmation' => '1234'
+            'password_confirmation' => '1234',
+            'cpf' => '74693612006'
         ]);
 
         $response->assertResponseStatus(\Illuminate\Http\Response::HTTP_OK);

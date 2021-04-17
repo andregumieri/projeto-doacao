@@ -11,7 +11,8 @@ class UsersController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email',
+            'cpf' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
             'name' => 'required',
             'password' => 'required',
             'password_confirmation' => 'same:password'
@@ -21,6 +22,7 @@ class UsersController extends Controller
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         $user->name = $request->input('name');
+        $user->cpf = $request->input('cpf');
         $user->save();
     }
 
