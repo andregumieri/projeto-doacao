@@ -11,7 +11,7 @@ class UsersController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'cpf' => 'required|unique:users',
+            'cpf' => 'required|regex:/\d{11}/|unique:users', // @todo Validate CPF
             'email' => 'required|email|unique:users',
             'name' => 'required',
             'password' => 'required',

@@ -20,7 +20,7 @@ class AddUsersTable extends Migration
             $table->string('donator_code')->unique();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('cpf')->unique();
+            $table->char('cpf', 11)->unique();
             $table->string('password');
         });
     }

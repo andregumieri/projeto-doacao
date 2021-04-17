@@ -18,9 +18,12 @@ class AddOrganizationsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->string('name')->index();
-            $table->string('email');
-            $table->string('website');
-            $table->string('phone_number');
+            $table->string('cnpj')->unique();
+            $table->string('statement');
+            $table->string('email')->unique();
+            $table->string('website')->nullable();
+            $table->string('phone_number', 11)->nullable();
+            $table->boolean('active')->index()->default(0);
         });
     }
 
