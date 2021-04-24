@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUsersTable extends Migration
+class AddTabelaUsuarios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class AddUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function(Blueprint $table) {
+        Schema::create('usuarios', function(Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->softDeletes();
-            $table->string('donator_code')->unique();
-            $table->string('name');
+            $table->string('codigo_doador')->unique();
+            $table->string('nome');
             $table->string('email')->unique();
             $table->char('cpf', 11)->unique();
-            $table->string('password');
+            $table->string('senha');
         });
     }
 
@@ -32,6 +32,6 @@ class AddUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::drop('usuarios');
     }
 }

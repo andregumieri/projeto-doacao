@@ -9,19 +9,20 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Lumen\Auth\Authorizable;
 
 /**
  * @property int id
- * @property string donator_code
- * @property string name
+ * @property string codigo_doador
+ * @property string nome
  * @property string email
  * @property string cpf
- * @property string password
+ * @property string senha
  *
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class Usuario extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory, SoftDeletes;
 
@@ -31,7 +32,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'nome', 'email',
     ];
 
     /**
@@ -40,7 +41,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        'senha',
     ];
 
     /**
@@ -49,9 +50,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected static function boot()
     {
         parent::boot();
-        self::creating(function(User $user) {
-            $user->password = encrypt($user->password);
-            $user->donator_code = base_convert(rand(100, 999) . Carbon::now()->timestamp, 10, 36);
+        self::creating(function(Usuario $usuario) {
+            $usuario->senha = Hash::make($usuario->senha);
+            $usuario->codigo_doador = base_convert(rand(100, 999) . Carbon::now()->timestamp, 10, 36);
         });
     }
 
@@ -62,6 +63,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function organizations()
     {
-        return $this->hasMany(Organization::class);
+        return $this->hasMany(Organizacao::class);
     }
 }

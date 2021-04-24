@@ -12,23 +12,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * @property int id
- * @property string name
+ * @property string nome
  * @property string cnpj
- * @property string|null statement
+ * @property string|null descricao
  * @property string email
- * @property string|null website
- * @property string|null phone_number
- * @property bool active
- * @property string|null wirecard_account
- * @property int|null user_id
+ * @property string|null site
+ * @property string|null telefone
+ * @property bool ativo
+ * @property int|null usuario_id
  */
-class Organization extends Model
+class Organizacao extends Model
 {
     use SoftDeletes;
 
     protected $guarded = ['id'];
 
     protected $casts = ['active' => 'bool'];
+
+    protected $table = 'organizacoes';
 
     /**
      * Returns a belongsTo relation with User Model
@@ -37,6 +38,6 @@ class Organization extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Usuario::class);
     }
 }

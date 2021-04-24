@@ -8,27 +8,29 @@ class UsersControllerTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function should_create_user()
+    public function deve_criar()
     {
-        $response = $this->post('/v1/users', [
+        $response = $this->post('/v1/usuarios', [
             'email' => 'teste@email.com',
-            'name' => 'Fulano Teste',
-            'password' => '1234',
-            'password_confirmation' => '1234',
+            'nome' => 'Fulano Teste',
+            'senha' => '1234',
+            'senha_confirmation' => '1234',
             'cpf' => '74693612006'
         ]);
 
+        $this->dump();
+
         $response->assertResponseStatus(\Illuminate\Http\Response::HTTP_OK);
 
-        $this->seeInDatabase('users', ['email' => 'teste@email.com', 'name' => 'Fulano Teste']);
+        $this->seeInDatabase('usuarios', ['email' => 'teste@email.com', 'nome' => 'Fulano Teste']);
     }
 
     /** @test */
-    public function should_public_view()
+    public function deve_mostrar_dados_publicos()
     {
-        $user = \App\Models\User::factory()->create();
-        $this->get('/v1/users/' . $user->id)->seeJson([
-            'name' => $user->name
+        $user = \App\Models\Usuario::factory()->create();
+        $this->get('/v1/usuarios/' . $user->id)->seeJson([
+            'nome' => $user->nome
         ]);
     }
 }

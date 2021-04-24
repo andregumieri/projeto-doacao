@@ -4,11 +4,11 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Organization;
+use App\Models\Organizacao;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class OrganizationsController extends Controller
+class OrganizacoesController extends Controller
 {
     /**
      * Creates a new organization
@@ -18,17 +18,17 @@ class OrganizationsController extends Controller
      * @return Response|\Laravel\Lumen\Http\ResponseFactory
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function create(Request $request)
+    public function criar(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'statement' => 'required',
-            'cnpj' => 'required|regex:/\d{14}/|unique:organizations', // @todo Validate CNPJ
-            'email' => 'required|email|unique:organizations',
-            'phone_number' => 'regex:/\d{8,11}/',
+            'nome' => 'required',
+            'descricao' => 'required',
+            'cnpj' => 'required|regex:/\d{14}/|unique:organizacoes', // @todo Validar CNPJ
+            'email' => 'required|email|unique:organizacoes',
+            'telefone' => 'regex:/\d{8,11}/',
         ]);
 
-        Organization::create($request->toArray());
+        Organizacao::create($request->toArray());
 
         return response(null, Response::HTTP_CREATED);
     }

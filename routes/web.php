@@ -13,17 +13,9 @@
 |
 */
 
-use App\Http\Controllers\UsersController;
-
-$router->post('/', function () use ($router) {
-    return $router->app->version();
-});
-
-
-
 $router->group(['prefix' => 'v1'], function() use ($router) {
-    $router->post('users', 'UsersController@create');
-    $router->get('users/{id}', 'UsersController@view');
+    $router->post('usuarios', 'UsuariosController@criar');
+    $router->get('usuarios/{id}', 'UsuariosController@ver');
 
-    $router->post('organizations', 'OrganizationsController@create');
+    $router->post('organizacoes', 'OrganizacoesController@criar');
 });

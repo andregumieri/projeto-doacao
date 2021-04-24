@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Organization;
+use App\Models\Organizacao;
 use Illuminate\Database\Seeder;
 
-class OrganizationsTableSeeder extends Seeder
+class OrganizacoesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,13 +14,13 @@ class OrganizationsTableSeeder extends Seeder
      */
     public function run()
     {
-        Organization::create([
-             'name' => 'ONG',
+        Organizacao::create([
+             'nome' => 'ONG',
              'email' => 'ong@email.com',
              'cnpj' => '11879562000173',
-             'website' => 'https://ong.org',
-             'phone_number' => '0800 123 1234',
-             'active' => 1,
+             'site' => 'https://ong.org',
+             'telefone' => '0800 123 1234',
+             'ativo' => 1,
          ]);
     }
 }
