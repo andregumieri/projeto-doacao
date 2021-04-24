@@ -48,6 +48,7 @@ class UserTest extends \TestCase
         $user->name = 'Fulano de Tal';
         $user->password = '1234';
         $user->email = 'teste@email.com';
+        $user->cpf = '74693612006';
         $user->save();
 
         $this->assertNotNull($user->password);

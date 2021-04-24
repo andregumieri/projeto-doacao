@@ -10,6 +10,14 @@ use Illuminate\Http\Response;
 
 class OrganizationsController extends Controller
 {
+    /**
+     * Creates a new organization
+     *
+     * @route POST /v1/organizations
+     * @param Request $request
+     * @return Response|\Laravel\Lumen\Http\ResponseFactory
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function create(Request $request)
     {
         $this->validate($request, [

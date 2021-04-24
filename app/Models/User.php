@@ -15,10 +15,10 @@ use Laravel\Lumen\Auth\Authorizable;
 /**
  * @property int id
  * @property string donator_code
- * @property string email
- * @property string password
  * @property string name
+ * @property string email
  * @property string cpf
+ * @property string password
  *
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract
@@ -43,6 +43,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 
+    /**
+     * Boot
+     */
     protected static function boot()
     {
         parent::boot();
@@ -50,5 +53,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             $user->password = encrypt($user->password);
             $user->donator_code = base_convert(rand(100, 999) . Carbon::now()->timestamp, 10, 36);
         });
+    }
+
+    /**
+     * Returns a hasMany relation between User and Organizations
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function organizations()
+    {
+        return $this->hasMany(Organization::class);
     }
 }

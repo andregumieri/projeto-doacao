@@ -23,7 +23,7 @@ $router->post('/', function () use ($router) {
 
 $router->group(['prefix' => 'v1'], function() use ($router) {
     $router->post('users', 'UsersController@create');
-    $router->get('users/{userId}', 'UsersController@view');
+    $router->get('users/{id}', 'UsersController@view');
 
     $router->post('organizations', 'OrganizationsController@create');
 });

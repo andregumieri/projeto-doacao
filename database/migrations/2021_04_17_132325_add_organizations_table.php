@@ -20,10 +20,12 @@ class AddOrganizationsTable extends Migration
             $table->string('name')->index();
             $table->string('cnpj')->unique();
             $table->string('statement');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('website')->nullable();
             $table->string('phone_number', 11)->nullable();
             $table->boolean('active')->index()->default(0);
+            $table->string('wirecard_account', 20)->nullable();
+            $table->integer('user_id')->nullable();
         });
     }
 

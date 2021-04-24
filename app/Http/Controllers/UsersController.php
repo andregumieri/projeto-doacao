@@ -8,6 +8,13 @@ use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
+    /**
+     * Creates a new user
+     *
+     * @route POST /v1/users
+     * @param Request $request
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function create(Request $request)
     {
         $this->validate($request, [
@@ -26,9 +33,16 @@ class UsersController extends Controller
         $user->save();
     }
 
-    public function view(int $userId)
+    /**
+     * Shows public information of a user
+     *
+     * @route POST /v1/users/{id}
+     * @param int $id
+     * @return array
+     */
+    public function view(int $id)
     {
-        $user = User::findOrFail($userId);
+        $user = User::findOrFail($id);
 
         return [
             'name' => $user->name
